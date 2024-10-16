@@ -205,7 +205,7 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
         ]
     }
 
-## Update role # CodebuildContactRole
+## Update role CodebuildContactRole
 
 **Policy:** GetArtifacts
 
@@ -227,3 +227,43 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
             }
         ]
     }
+
+## GitHub Actions optional
+
+Go to URL https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/identity_providers -> Add provider.
+
+**Option:** OpenID Connect
+
+**Provider URL:** https://token.actions.githubusercontent.com
+
+**Audience:** sts.amazonaws.com
+
+Click Add provider.
+
+Then you must assign a Role that has start code pipeline permissions.
+
+**Policy:** StartAnyCodepipeline
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Resource": "arn:aws:codepipeline:*:${AWS:AccountId}:*"
+                "Action": "codepipeline:StartPipelineExecution"
+            }
+        ]
+    }
+
+On GitHub, go to the **repository->Settings->Secrets and variables.**
+
+There you must add two variables, one secret and one normal.
+
+Secret:
+- **AWS_ROLE_TO_ASSUME**: the arn of the created role associated with the identity provider must go here
+
+Normal:
+- **AWS_CONTACT_PIPELINE_NAME**: the name of the created pipeline goes here
+
+
+**Post: Actions must be active for the repository**
