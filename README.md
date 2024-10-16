@@ -20,7 +20,7 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
         ]
     }
 
-**Policy:** PipelineDeploymentPolicy
+**Add policy:** PipelineDeploymentPolicy
 
     {
         "Statement": [
@@ -141,33 +141,56 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
 **Trust relationships:**
 
     {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "",
+          "Effect": "Allow",
+           "Principal": {
+             "Service": "cloudformation.amazonaws.com"
+           },
+           "Action": "sts:AssumeRole"
+         }
+      ]
+    }
+  
+  **Add policy:** CloudFormationDeployerPolicy
+
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "VisualEditor0",
+          "Effect": "Allow",
+          "Action": [
+            "dynamodb:*",
+            "lambda:*",
+            "apigateway:*"
+          ],
+          "Resource": "*"
+        }
+      ]
+    }
+
+## Update role # CodebuildContactRole
+
+**Add policy:** GetArtifacts
+
+    {
         "Version": "2012-10-17",
         "Statement": [
             {
-                "Sid": "",
                 "Effect": "Allow",
-                "Principal": {
-                    "Service": "cloudformation.amazonaws.com"
-                },
-                "Action": "sts:AssumeRole"
+                "Resource": [
+                    "arn:aws:s3:::deployment-artifacts-${AWS:AccountId}/*"
+                ],
+                "Action": [
+                    "s3:PutObject",
+                    "s3:GetObject",
+                    "s3:GetObjectVersion",
+                    "s3:GetBucketAcl",
+                    "s3:GetBucketLocation"
+                ]
             }
         ]
-    }
-  
-  **Policy:** CloudFormationDeployerPolicy
-
-      {
-    	"Version": "2012-10-17",
-    	"Statement": [
-    		{
-    			"Sid": "VisualEditor0",
-    			"Effect": "Allow",
-    			"Action": [
-    				"dynamodb:*",
-    				"lambda:*",
-    				"apigateway:*"
-    			],
-    			"Resource": "*"
-    		}
-    	]
     }
