@@ -20,7 +20,7 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
         ]
     }
 
-**Add policy:** PipelineDeploymentPolicy
+**Policy:** PipelineDeploymentPolicy
 
     {
         "Statement": [
@@ -154,7 +154,7 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
       ]
     }
   
-  **Add policy:** CloudFormationDeployerPolicy
+  **Policy:** CloudFormationDeployerPolicy
 
     {
       "Version": "2012-10-17",
@@ -165,7 +165,13 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
           "Action": [
             "dynamodb:*",
             "lambda:*",
-            "apigateway:*"
+            "apigateway:*",
+            "cloudformation:CreateStackSet",
+            "cloudformation:CreateStack",
+            "cloudformation:UpdateStack",
+            "cloudformation:UpdateStackSet",
+            "cloudformation:CreateChangeSet",
+            "cloudformation:ExecuteChangeSet"
           ],
           "Resource": "*"
         }
@@ -174,7 +180,7 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
 
 ## Update role # CodebuildContactRole
 
-**Add policy:** GetArtifacts
+**Policy:** GetArtifacts
 
     {
         "Version": "2012-10-17",

@@ -1,7 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  melonn admin backend and api
 
 Globals:
   Function:
@@ -42,7 +40,7 @@ Resources:
     Properties:
       Name: contact-api
       EndpointConfiguration: REGIONAL
-      StageName: '{{resolve:ssm:/ENVIRONMENT}}'
+      StageName: prod
       Cors:
         AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,id-token'"
         AllowMethods: "'DELETE,GET,OPTIONS,POST,PUT'"
