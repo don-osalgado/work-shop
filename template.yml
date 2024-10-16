@@ -124,7 +124,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref ContactApi
-            Path: /${email}
+            Path: /{email}
             Method: DELETE
 
   ContactDeleteRole:
@@ -185,7 +185,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref ContactApi
-            Path: /${email}
+            Path: /{email}
             Method: GET
 
   ContactGetRole:
@@ -245,7 +245,7 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref ContactApi
-            Path: /${email}
+            Path: /{email}
             Method: PUT
 
   ContactUpdateRole:

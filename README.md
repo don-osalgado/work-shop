@@ -156,26 +156,52 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
   
   **Policy:** CloudFormationDeployerPolicy
 
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "VisualEditor0",
+                "Effect": "Allow",
+                "Action": [
+                    "apigateway:*",
+                    "cloudformation:CreateStack",
+                    "lambda:*",
+                    "cloudformation:UpdateStack",
+                    "dynamodb:*",
+                    "cloudformation:UpdateStackSet",
+                    "cloudformation:CreateChangeSet",
+                    "cloudformation:ExecuteChangeSet",
+                    "cloudformation:CreateStackSet",
+                    "iam:GetRole",
+                    "iam:CreateRole",
+                    "iam:DeleteRolePolicy",
+                    "iam:DetachRolePolicy",
+                    "iam:PutRolePolicy",
+                    "iam:DeleteRole",
+                    "iam:AttachRolePolicy",
+                    "iam:PassRole",
+                    "logs:CreateLogGroup"
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+
+**Policy:** GetArtifacts
+
     {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Sid": "VisualEditor0",
-          "Effect": "Allow",
-          "Action": [
-            "dynamodb:*",
-            "lambda:*",
-            "apigateway:*",
-            "cloudformation:CreateStackSet",
-            "cloudformation:CreateStack",
-            "cloudformation:UpdateStack",
-            "cloudformation:UpdateStackSet",
-            "cloudformation:CreateChangeSet",
-            "cloudformation:ExecuteChangeSet"
-          ],
-          "Resource": "*"
-        }
-      ]
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Resource": [
+                    "arn:aws:s3:::deployment-artifacts-${AWS:AccountId}/*"
+                ],
+                "Action": [
+                    "s3:GetObject"
+                ]
+            }
+        ]
     }
 
 ## Update role # CodebuildContactRole
