@@ -30,14 +30,14 @@ export const handler = async (
       };
     }
 
-    if (name?.length) {
+    if (!name?.length) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Name is required' })
       };
     }
 
-    if (phoneNumber?.length) {
+    if (!phoneNumber?.length) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Phone number is required' })

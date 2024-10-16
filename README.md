@@ -180,7 +180,8 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
                     "iam:DeleteRole",
                     "iam:AttachRolePolicy",
                     "iam:PassRole",
-                    "logs:CreateLogGroup"
+                    "logs:CreateLogGroup",
+                    "logs:PutRetentionPolicy"
                 ],
                 "Resource": "*"
             }

@@ -4,7 +4,7 @@ import {
   GetItemCommand,
   UpdateItemCommand
 } from '@aws-sdk/client-dynamodb';
-import { marshall } from '@aws-sdk/util-dynamodb';
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 
 interface Contact {
   name: string;
@@ -30,7 +30,7 @@ export const handler = async (
       };
     }
 
-    if (name?.length) {
+    if (!name?.length) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Name is required' })
@@ -66,6 +66,10 @@ export const handler = async (
         Key: marshall({ email: email.toLowerCase() }),
         UpdateExpression:
           'SET #name = :nameValue, #phoneNumber = :phoneNumberValue',
+        ExpressionAttributeNames: {
+          '#name': 'name',
+          '#phoneNumber': 'phoneNumber'
+        },
         ExpressionAttributeValues: marshall({
           ':nameValue': name,
           ':phoneNumberValue': phoneNumber
@@ -78,7 +82,7 @@ export const handler = async (
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ data })
+      body: JSON.stringify(unmarshall(data ?? {}))
     };
   } catch (error) {
     console.log(error);
