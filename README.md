@@ -289,7 +289,7 @@ This is where we will put the github artifacts and the build result
     post_build:
         commands:
         - aws cloudformation package --template template.yml --s3-bucket $S3Bucket --output-template package.yml
-        - aws cloudformation --region us-west-1 package --template $PROJECT_DIR/template.yml --s3-bucket $S3BucketDRP --output-template package-drp.yml
+        - aws cloudformation --region us-west-1 package --template template.yml --s3-bucket $S3BucketDRP --output-template package-drp.yml
     artifacts:
     files:
         - package.yml
