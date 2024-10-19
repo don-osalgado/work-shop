@@ -37,7 +37,7 @@ export const handler = async (
       };
     }
 
-    if (phoneNumber?.length) {
+    if (!phoneNumber?.length) {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Phone number is required' })
