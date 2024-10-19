@@ -261,15 +261,15 @@ This is where we will put the github artifacts and the build result
 
 **Change attribute "artifactStore" by "artifactStores"**
 
-    {
-        "us-east-1": {
-            "type": "S3",
-            "location": "deployment-artifacts-${AWS:accountId}",
-            "us-west-1": {
-            "type": "S3",
-            "location": "deployment-artifacts-${AWS:accountId}-drp"
-            }
-        }
+    {        
+        "us-east-1": {    
+    	    "type": "S3",    
+    	    "location": "deployment-artifacts-${AWS:accountId}"    
+        },        
+        "us-west-1": {    
+    	    "type": "S3",    
+    	    "location": "deployment-artifacts-${AWS:accountId}-drp"    
+        }    
     }
 
 **Execute command:** aws codepipeline update-pipeline --cli-input-json '{"pipeline": {...}}'
